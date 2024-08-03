@@ -4,6 +4,7 @@ import com.josemiguelmelo.lnd.bolt11.model.Bolt11
 
 class Bolt11Decoder : Decoder<String, Bolt11> {
     private val humanReadablePartDecoder = HumanReadablePartDecoder()
+    private val bolt11DataDecoder = Bolt11DataDecoder()
 
     private data class Bolt11Parts(
         val hrp: String,
@@ -15,8 +16,15 @@ class Bolt11Decoder : Decoder<String, Bolt11> {
         val bolt11Parts = decodeBolt11Parts(invoice)
         val humanReadablePart = humanReadablePartDecoder.decode(bolt11Parts.hrp)
 
+        val data = bolt11DataDecoder.decode(
+            Bolt11DataDecoder.Bolt11DataDecoderRequest(
+                data = bolt11Parts.data,
+                humanReadablePart = humanReadablePart
+            )
+        )
         return Bolt11(
             hrp = humanReadablePart,
+            data = data,
         )
     }
 
