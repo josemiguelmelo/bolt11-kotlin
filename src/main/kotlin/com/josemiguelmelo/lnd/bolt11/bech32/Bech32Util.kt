@@ -12,6 +12,12 @@ object Bech32Util {
         }
     }
 
+    fun bech32ToBinaryString(byteArray: List<Int>): String {
+        return byteArray.joinToString("") { byte ->
+            byte.and(0xFF).toString(2).padStart(6, '0').takeLast(5)
+        }
+    }
+
     fun bech32ToInt(bech32Str: String): Int {
         return bech32Str.foldIndexed(0) { idx, acc, _ ->
             val newAcc = acc * 32

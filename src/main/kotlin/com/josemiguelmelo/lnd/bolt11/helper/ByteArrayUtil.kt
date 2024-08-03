@@ -5,6 +5,12 @@ import org.bouncycastle.util.encoders.Hex
 object ByteArrayUtil {
     fun ByteArray.toHexString() = Hex.toHexString(this)
 
+    fun ByteArray.toInt(): Int {
+        return this.fold(0) { acc, byte ->
+            (acc shl 8) + (byte.toInt() and 0xFF)
+        }
+    }
+
     fun convertInt5ArrayToByteArray(int5Array: List<Int>, includeOverflow: Boolean = false): ByteArray {
         var count = 0
         var buffer = 0
