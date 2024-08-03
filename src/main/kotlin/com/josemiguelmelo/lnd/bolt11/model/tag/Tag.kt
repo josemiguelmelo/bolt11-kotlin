@@ -21,8 +21,8 @@ enum class TagType(val description: String, val code: Char) {
     FALLBACK_ADDRESS("fallback_address", 'f'),
     ROUTING_INFORMATION("routing_information", 'r'),
 
-
-    FEATURE_BITS("feature_bits", '9');
+    FEATURE_BITS("feature_bits", '9'),
+    ;
 
     companion object {
         fun fromTypeCode(code: Char): TagType? {

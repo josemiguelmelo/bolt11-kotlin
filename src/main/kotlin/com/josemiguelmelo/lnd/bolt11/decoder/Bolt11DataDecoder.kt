@@ -1,11 +1,6 @@
 package com.josemiguelmelo.lnd.bolt11.decoder
 
-import com.josemiguelmelo.lnd.bolt11.bech32.Bech32Util
-import com.josemiguelmelo.lnd.bolt11.bech32.Bech32Util.bech32To5BitArray
 import com.josemiguelmelo.lnd.bolt11.bech32.Bech32Util.bech32ToInt
-import com.josemiguelmelo.lnd.bolt11.helper.ByteArrayUtil.convertInt5ArrayToByteArray
-import com.josemiguelmelo.lnd.bolt11.helper.ByteArrayUtil.textToHexString
-import com.josemiguelmelo.lnd.bolt11.helper.ByteArrayUtil.toHexString
 import com.josemiguelmelo.lnd.bolt11.model.Bolt11Data
 import com.josemiguelmelo.lnd.bolt11.model.HumanReadablePart
 import com.josemiguelmelo.lnd.bolt11.model.Signature
@@ -14,7 +9,7 @@ import com.josemiguelmelo.lnd.bolt11.model.tag.Tag
 internal class Bolt11DataDecoder() : Decoder<Bolt11DataDecoder.Bolt11DataDecoderRequest, Bolt11Data> {
     data class Bolt11DataDecoderRequest(
         val data: String,
-        val humanReadablePart: HumanReadablePart
+        val humanReadablePart: HumanReadablePart,
     )
 
     private val tagDecoder = TagDecoder()
@@ -32,7 +27,7 @@ internal class Bolt11DataDecoder() : Decoder<Bolt11DataDecoder.Bolt11DataDecoder
             tags = tags,
             signingData = signingData,
             signature = signature,
-            raw = bolt11DataRequest.data
+            raw = bolt11DataRequest.data,
         )
     }
 
@@ -52,17 +47,16 @@ internal class Bolt11DataDecoder() : Decoder<Bolt11DataDecoder.Bolt11DataDecoder
     }
 
     private fun decodeSigningData(bolt11DataRequest: Bolt11DataDecoderRequest): String {
-        val request = SigningDataDecoder.SigningDataDecoderRequest(
-            timestampData = timestampData(bolt11DataRequest.data),
-            tagData = tagData(bolt11DataRequest.data),
-            humanReadablePartRaw = bolt11DataRequest.humanReadablePart.raw
-        )
+        val request =
+            SigningDataDecoder.SigningDataDecoderRequest(
+                timestampData = timestampData(bolt11DataRequest.data),
+                tagData = tagData(bolt11DataRequest.data),
+                humanReadablePartRaw = bolt11DataRequest.humanReadablePart.raw,
+            )
         return signingDataDecoder.decode(request)
     }
 
-    private fun timestampData(bolt11Data: String) =
-        bolt11Data.substring(0, 7)
+    private fun timestampData(bolt11Data: String) = bolt11Data.substring(0, 7)
 
-    private fun tagData(bolt11Data: String) =
-        bolt11Data.substring(7, bolt11Data.length - 104)
+    private fun tagData(bolt11Data: String) = bolt11Data.substring(7, bolt11Data.length - 104)
 }

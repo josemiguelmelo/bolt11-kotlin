@@ -26,14 +26,14 @@ object Bech32Util {
     }
 
     fun bech32ToUTF8String(bech32Str: String): String {
-        val int5Array = bech32To5BitArray(bech32Str);
-        val byteArray = convertInt5ArrayToByteArray(int5Array);
+        val int5Array = bech32To5BitArray(bech32Str)
+        val byteArray = convertInt5ArrayToByteArray(int5Array)
 
         val utf8String = StringBuilder()
         for (byte in byteArray) {
             utf8String.append("%")
             utf8String.append(byte.toInt().and(0xFF).toString(16).padStart(2, '0'))
         }
-        return URLDecoder.decode(utf8String.toString(), "UTF-8");
+        return URLDecoder.decode(utf8String.toString(), "UTF-8")
     }
 }

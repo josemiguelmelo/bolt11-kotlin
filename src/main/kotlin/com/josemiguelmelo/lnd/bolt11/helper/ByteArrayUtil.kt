@@ -11,7 +11,10 @@ object ByteArrayUtil {
         }
     }
 
-    fun convertInt5ArrayToByteArray(int5Array: List<Int>, includeOverflow: Boolean = false): ByteArray {
+    fun convertInt5ArrayToByteArray(
+        int5Array: List<Int>,
+        includeOverflow: Boolean = false,
+    ): ByteArray {
         var count = 0
         var buffer = 0
         val byteArray = mutableListOf<Byte>()
@@ -32,6 +35,5 @@ object ByteArrayUtil {
         return byteArray.toByteArray()
     }
 
-    fun textToHexString(text: String): String =
-        text.map { it.code.toString(16) }.joinToString("")
+    fun textToHexString(text: String): String = text.map { it.code.toString(16) }.joinToString("")
 }

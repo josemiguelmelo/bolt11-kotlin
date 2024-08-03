@@ -9,13 +9,14 @@ internal class SigningDataDecoder : Decoder<SigningDataDecoder.SigningDataDecode
     data class SigningDataDecoderRequest(
         val timestampData: String,
         val tagData: String,
-        val humanReadablePartRaw: String
+        val humanReadablePartRaw: String,
     )
 
     override fun decode(signingDataDecoderRequest: SigningDataDecoderRequest): String {
-        val value5BitArray = bech32To5BitArray(
-            signingDataDecoderRequest.timestampData + signingDataDecoderRequest.tagData
-        )
+        val value5BitArray =
+            bech32To5BitArray(
+                signingDataDecoderRequest.timestampData + signingDataDecoderRequest.tagData,
+            )
         val value8BitArray = convertInt5ArrayToByteArray(value5BitArray, true)
         return ByteArrayUtil.textToHexString(signingDataDecoderRequest.humanReadablePartRaw) + value8BitArray.toHexString()
     }

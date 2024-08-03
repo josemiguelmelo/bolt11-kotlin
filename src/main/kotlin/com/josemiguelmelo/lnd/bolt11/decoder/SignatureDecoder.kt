@@ -6,7 +6,6 @@ import com.josemiguelmelo.lnd.bolt11.helper.ByteArrayUtil.toHexString
 import com.josemiguelmelo.lnd.bolt11.model.Signature
 
 internal class SignatureDecoder : Decoder<String, Signature> {
-
     override fun decode(signature: String): Signature {
         val signatureData = convertInt5ArrayToByteArray(bech32To5BitArray(signature))
 
