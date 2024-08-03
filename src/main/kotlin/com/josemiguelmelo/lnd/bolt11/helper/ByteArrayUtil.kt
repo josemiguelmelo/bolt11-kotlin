@@ -31,4 +31,7 @@ object ByteArrayUtil {
 
         return byteArray.toByteArray()
     }
+
+    fun textToHexString(text: String): String =
+        text.map { it.code.toString(16) }.joinToString("")
 }

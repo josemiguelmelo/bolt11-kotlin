@@ -21,7 +21,7 @@ internal class TagDecoder: Decoder<String, List<Tag<*>>> {
 
         while (tagString.isNotEmpty()) {
             val type = tagString[0]
-            val dataLength = Bech32Util.bech32ToInt(tagString.substring(1, 3))
+            val dataLength = bech32ToInt(tagString.substring(1, 3))
             val bech32Data = tagString.substring(3, dataLength + 3)
 
             tagString = tagString.substring(3 + dataLength, tagString.length)

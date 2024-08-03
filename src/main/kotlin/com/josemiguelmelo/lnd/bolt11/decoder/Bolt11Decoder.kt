@@ -13,7 +13,8 @@ class Bolt11Decoder : Decoder<String, Bolt11> {
     )
 
     override fun decode(invoice: String): Bolt11 {
-        val bolt11Parts = decodeBolt11Parts(invoice)
+        val invoiceLowerCase = invoice.lowercase()
+        val bolt11Parts = decodeBolt11Parts(invoiceLowerCase)
         val humanReadablePart = humanReadablePartDecoder.decode(bolt11Parts.hrp)
 
         val data = bolt11DataDecoder.decode(
@@ -25,6 +26,7 @@ class Bolt11Decoder : Decoder<String, Bolt11> {
         return Bolt11(
             hrp = humanReadablePart,
             data = data,
+            checksum = bolt11Parts.checksum,
         )
     }
 
