@@ -5,6 +5,7 @@ import com.josemiguelmelo.lnd.bolt11.model.Bolt11
 class Bolt11Decoder : Decoder<String, Bolt11> {
     private val humanReadablePartDecoder = HumanReadablePartDecoder()
     private val bolt11DataDecoder = Bolt11DataDecoder()
+    private val checksumVerifier = ChecksumVerifier()
 
     private data class Bolt11Parts(
         val hrp: String,
@@ -14,17 +15,21 @@ class Bolt11Decoder : Decoder<String, Bolt11> {
 
     override fun decode(invoice: String): Bolt11 {
         val invoiceLowerCase = invoice.lowercase()
+
         val bolt11Parts = decodeBolt11Parts(invoiceLowerCase)
-        // TODO: verify checksum
+
+        if (!checksumVerifier.verify(bolt11Parts.hrp, bolt11Parts.data, bolt11Parts.checksum)) {
+            throw Error("Checksum failed")
+        }
+
         val humanReadablePart = humanReadablePartDecoder.decode(bolt11Parts.hrp)
 
-        val data =
-            bolt11DataDecoder.decode(
-                Bolt11DataDecoder.Bolt11DataDecoderRequest(
-                    data = bolt11Parts.data,
-                    humanReadablePart = humanReadablePart,
-                ),
+        val bolt11DataDecoderRequest =
+            Bolt11DataDecoder.Bolt11DataDecoderRequest(
+                data = bolt11Parts.data,
+                humanReadablePart = humanReadablePart,
             )
+        val data = bolt11DataDecoder.decode(bolt11DataDecoderRequest)
         return Bolt11(
             hrp = humanReadablePart,
             data = data,

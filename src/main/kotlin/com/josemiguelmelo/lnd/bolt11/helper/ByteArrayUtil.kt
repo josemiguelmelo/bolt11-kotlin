@@ -3,7 +3,7 @@ package com.josemiguelmelo.lnd.bolt11.helper
 import org.bouncycastle.util.encoders.Hex
 
 object ByteArrayUtil {
-    fun ByteArray.toHexString() = Hex.toHexString(this)
+    fun ByteArray.toHexString(): String = Hex.toHexString(this)
 
     fun ByteArray.toInt(): Int {
         return this.fold(0) { acc, byte ->
