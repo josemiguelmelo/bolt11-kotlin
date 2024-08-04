@@ -1,5 +1,6 @@
-package com.josemiguelmelo.lnd.bolt11.decoder
+package com.josemiguelmelo.lnd.bolt11.decoder.internal
 
+import com.josemiguelmelo.lnd.bolt11.decoder.Decoder
 import com.josemiguelmelo.lnd.bolt11.model.HumanReadablePart
 
 internal class HumanReadablePartDecoder : Decoder<String, HumanReadablePart> {
@@ -13,6 +14,7 @@ internal class HumanReadablePartDecoder : Decoder<String, HumanReadablePart> {
 
     override fun decode(hrp: String): HumanReadablePart {
         val network: Pair<String, String> = decodeNetwork(hrp)
+        // TODO: validate network is supported
 
         val amountPart = hrp.substring(network.first.length)
         val amountMsat = decodeAmount(amountPart)
@@ -20,12 +22,12 @@ internal class HumanReadablePartDecoder : Decoder<String, HumanReadablePart> {
         return HumanReadablePart(network = network.first, networkName = network.second, mSat = amountMsat, raw = hrp)
     }
 
-    private fun decodeNetwork(hrp: String): Pair<String, String> {
+    fun decodeNetwork(hrp: String): Pair<String, String> {
         return NETWORK_PREFIXES.entries.find { hrp.startsWith(it.key) }?.toPair()
             ?: ("" to "Unknown Network")
     }
 
-    private fun decodeAmount(amountPart: String): Long {
+    fun decodeAmount(amountPart: String): Long {
         if (amountPart.isEmpty()) return 0
         var multiplier: Long = 1
         var lastChar = amountPart[amountPart.length - 1]

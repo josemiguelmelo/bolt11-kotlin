@@ -1,9 +1,10 @@
-package com.josemiguelmelo.lnd.bolt11.decoder
+package com.josemiguelmelo.lnd.bolt11.decoder.internal
 
 import com.josemiguelmelo.lnd.bolt11.bech32.Bech32Util.bech32To5BitArray
 import com.josemiguelmelo.lnd.bolt11.bech32.Bech32Util.bech32ToBinaryString
 import com.josemiguelmelo.lnd.bolt11.bech32.Bech32Util.bech32ToInt
 import com.josemiguelmelo.lnd.bolt11.bech32.Bech32Util.bech32ToUTF8String
+import com.josemiguelmelo.lnd.bolt11.decoder.Decoder
 import com.josemiguelmelo.lnd.bolt11.helper.ByteArrayUtil.convertInt5ArrayToByteArray
 import com.josemiguelmelo.lnd.bolt11.helper.ByteArrayUtil.toHexString
 import com.josemiguelmelo.lnd.bolt11.helper.ByteArrayUtil.toInt

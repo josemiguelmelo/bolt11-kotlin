@@ -1,5 +1,7 @@
 package com.josemiguelmelo.lnd.bolt11.decoder
 
+import com.josemiguelmelo.lnd.bolt11.decoder.internal.Bolt11DataDecoder
+import com.josemiguelmelo.lnd.bolt11.decoder.internal.HumanReadablePartDecoder
 import com.josemiguelmelo.lnd.bolt11.model.Bolt11
 
 class Bolt11Decoder : Decoder<String, Bolt11> {
