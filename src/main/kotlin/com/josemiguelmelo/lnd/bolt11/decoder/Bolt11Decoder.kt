@@ -15,8 +15,11 @@ class Bolt11Decoder : Decoder<String, Bolt11> {
         val checksum: String,
     )
 
-    override fun decode(invoice: String): Bolt11 {
-        val invoiceLowerCase = invoice.lowercase()
+    /**
+     * @param input Bolt11 invoice string
+     */
+    override fun decode(input: String): Bolt11 {
+        val invoiceLowerCase = input.lowercase()
 
         val bolt11Parts = decodeBolt11Parts(invoiceLowerCase)
 

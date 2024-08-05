@@ -17,18 +17,21 @@ internal class Bolt11DataDecoder() : Decoder<Bolt11DataDecoder.Bolt11DataDecoder
     private val signatureDecoder = SignatureDecoder()
     private val signingDataDecoder = SigningDataDecoder()
 
-    override fun decode(bolt11DataRequest: Bolt11DataDecoderRequest): Bolt11Data {
-        val timestampEpoch = decodeTimestampEpoch(bolt11DataRequest.data)
-        val tags = decodeTags(bolt11DataRequest.data)
-        val signature = decodeSignature(bolt11DataRequest.data)
-        val signingData = decodeSigningData(bolt11DataRequest)
+    /**
+     * @param input Bolt11 data request
+     */
+    override fun decode(input: Bolt11DataDecoderRequest): Bolt11Data {
+        val timestampEpoch = decodeTimestampEpoch(input.data)
+        val tags = decodeTags(input.data)
+        val signature = decodeSignature(input.data)
+        val signingData = decodeSigningData(input)
 
         return Bolt11Data(
             timestamp = timestampEpoch,
             tags = tags,
             signingData = signingData,
             signature = signature,
-            raw = bolt11DataRequest.data,
+            raw = input.data,
         )
     }
 

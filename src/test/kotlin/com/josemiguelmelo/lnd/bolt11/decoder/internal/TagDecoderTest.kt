@@ -14,20 +14,22 @@ internal class TagDecoderTest() {
         private val dataDecoder = Bolt11DataDecoder()
 
         @JvmStatic
-        fun bolt1Addresses() = validTestData.map { data ->
-            Arguments.of(
-                dataDecoder.tagData(data.dataString),
-                data.decodeResult.data.tags
-            )
-        }
+        fun bolt1Addresses() =
+            validTestData.map { data ->
+                Arguments.of(
+                    dataDecoder.tagData(data.dataString),
+                    data.decodeResult.data.tags,
+                )
+            }
     }
 
     @ParameterizedTest
     @MethodSource("bolt1Addresses")
-    fun testTagDecoder(input: String, expected: List<Tag<*>>) {
+    fun testTagDecoder(
+        input: String,
+        expected: List<Tag<*>>,
+    ) {
         val result = decoder.decode(input)
         assertEquals(expected, result)
     }
-
-
 }

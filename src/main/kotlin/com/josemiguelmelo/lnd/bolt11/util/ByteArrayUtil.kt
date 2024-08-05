@@ -1,4 +1,4 @@
-package com.josemiguelmelo.lnd.bolt11.helper
+package com.josemiguelmelo.lnd.bolt11.util
 
 import org.bouncycastle.util.encoders.Hex
 

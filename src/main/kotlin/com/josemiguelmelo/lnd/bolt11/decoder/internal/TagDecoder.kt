@@ -5,17 +5,17 @@ import com.josemiguelmelo.lnd.bolt11.bech32.Bech32Util.bech32ToBinaryString
 import com.josemiguelmelo.lnd.bolt11.bech32.Bech32Util.bech32ToInt
 import com.josemiguelmelo.lnd.bolt11.bech32.Bech32Util.bech32ToUTF8String
 import com.josemiguelmelo.lnd.bolt11.decoder.Decoder
-import com.josemiguelmelo.lnd.bolt11.helper.ByteArrayUtil.convertInt5ArrayToByteArray
-import com.josemiguelmelo.lnd.bolt11.helper.ByteArrayUtil.toHexString
-import com.josemiguelmelo.lnd.bolt11.helper.ByteArrayUtil.toInt
-import com.josemiguelmelo.lnd.bolt11.model.tag.FallbackAddressTagValue
-import com.josemiguelmelo.lnd.bolt11.model.tag.RoutingInformationTagValue
-import com.josemiguelmelo.lnd.bolt11.model.tag.Tag
-import com.josemiguelmelo.lnd.bolt11.model.tag.TagType
+import com.josemiguelmelo.lnd.bolt11.model.tag.*
+import com.josemiguelmelo.lnd.bolt11.util.ByteArrayUtil.convertInt5ArrayToByteArray
+import com.josemiguelmelo.lnd.bolt11.util.ByteArrayUtil.toHexString
+import com.josemiguelmelo.lnd.bolt11.util.ByteArrayUtil.toInt
 
 internal class TagDecoder : Decoder<String, List<Tag<*>>> {
-    override fun decode(tagDataAsString: String): List<Tag<*>> {
-        var tagString = tagDataAsString
+    /**
+     * @param input Bolt11 tag part as string
+     */
+    override fun decode(input: String): List<Tag<*>> {
+        var tagString = input
         val tags = mutableListOf<Tag<*>>()
 
         while (tagString.isNotEmpty()) {

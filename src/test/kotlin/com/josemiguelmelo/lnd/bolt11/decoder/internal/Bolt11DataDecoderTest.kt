@@ -13,20 +13,24 @@ internal class Bolt11DataDecoderTest() {
 
     companion object {
         @JvmStatic
-        fun bolt1Addresses() = validTestData.map { data ->
-            Arguments.of(
-                Bolt11DataDecoder.Bolt11DataDecoderRequest(
-                    data = data.dataString,
-                    humanReadablePart = data.humanReadablePart
-                ),
-                data.decodeResult.data
-            )
-        }
+        fun bolt1Addresses() =
+            validTestData.map { data ->
+                Arguments.of(
+                    Bolt11DataDecoder.Bolt11DataDecoderRequest(
+                        data = data.dataString,
+                        humanReadablePart = data.humanReadablePart,
+                    ),
+                    data.decodeResult.data,
+                )
+            }
     }
 
     @ParameterizedTest
     @MethodSource("bolt1Addresses")
-    fun testDataDecoder(input: Bolt11DataDecoder.Bolt11DataDecoderRequest, expected: Bolt11Data) {
+    fun testDataDecoder(
+        input: Bolt11DataDecoder.Bolt11DataDecoderRequest,
+        expected: Bolt11Data,
+    ) {
         val result = decoder.decode(input)
         assertEquals(expected, result)
     }

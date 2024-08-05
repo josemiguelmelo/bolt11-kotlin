@@ -12,14 +12,17 @@ internal class HumanReadablePartDecoder : Decoder<String, HumanReadablePart> {
             "lntx" to "Litecoin Mainnet",
         )
 
-    override fun decode(hrp: String): HumanReadablePart {
-        val network: Pair<String, String> = decodeNetwork(hrp)
+    /**
+     * @param input Bolt11 human-readable part as string
+     */
+    override fun decode(input: String): HumanReadablePart {
+        val network: Pair<String, String> = decodeNetwork(input)
         // TODO: validate network is supported
 
-        val amountPart = hrp.substring(network.first.length)
+        val amountPart = input.substring(network.first.length)
         val amountMsat = decodeAmount(amountPart)
 
-        return HumanReadablePart(network = network.first, networkName = network.second, mSat = amountMsat, raw = hrp)
+        return HumanReadablePart(network = network.first, networkName = network.second, mSat = amountMsat, raw = input)
     }
 
     fun decodeNetwork(hrp: String): Pair<String, String> {

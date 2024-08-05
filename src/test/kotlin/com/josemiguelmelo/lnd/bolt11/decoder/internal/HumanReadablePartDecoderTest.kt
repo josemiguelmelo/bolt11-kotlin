@@ -2,7 +2,6 @@ package com.josemiguelmelo.lnd.bolt11.decoder.internal
 
 import com.josemiguelmelo.lnd.bolt11.data.Bolt11TestData.validTestData
 import com.josemiguelmelo.lnd.bolt11.model.HumanReadablePart
-import com.josemiguelmelo.lnd.bolt11.model.tag.Tag
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
@@ -14,17 +13,21 @@ internal class HumanReadablePartDecoderTest() {
 
     companion object {
         @JvmStatic
-        fun bolt1Addresses() = validTestData.map { data ->
-            Arguments.of(
-                data.humanReadablePart.raw,
-                data.humanReadablePart
-            )
-        }
+        fun bolt1Addresses() =
+            validTestData.map { data ->
+                Arguments.of(
+                    data.humanReadablePart.raw,
+                    data.humanReadablePart,
+                )
+            }
     }
 
     @ParameterizedTest
     @MethodSource("bolt1Addresses")
-    fun testHRPDecoder(input: String, expected: HumanReadablePart) {
+    fun testHRPDecoder(
+        input: String,
+        expected: HumanReadablePart,
+    ) {
         val result = decoder.decode(input)
         assertEquals(expected, result)
     }

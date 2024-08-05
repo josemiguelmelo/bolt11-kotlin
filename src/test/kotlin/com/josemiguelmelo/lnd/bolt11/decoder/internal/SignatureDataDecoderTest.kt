@@ -14,17 +14,21 @@ internal class SignatureDataDecoderTest() {
         private val dataDecoder = Bolt11DataDecoder()
 
         @JvmStatic
-        fun bolt1Addresses() = validTestData.map { data ->
-            Arguments.of(
-                dataDecoder.signatureData(data.dataString),
-                data.decodeResult.data.signature
-            )
-        }
+        fun bolt1Addresses() =
+            validTestData.map { data ->
+                Arguments.of(
+                    dataDecoder.signatureData(data.dataString),
+                    data.decodeResult.data.signature,
+                )
+            }
     }
 
     @ParameterizedTest
     @MethodSource("bolt1Addresses")
-    fun testSignatureDecoder(input: String, expected: Signature) {
+    fun testSignatureDecoder(
+        input: String,
+        expected: Signature,
+    ) {
         val result = decoder.decode(input)
         assertEquals(expected, result)
     }

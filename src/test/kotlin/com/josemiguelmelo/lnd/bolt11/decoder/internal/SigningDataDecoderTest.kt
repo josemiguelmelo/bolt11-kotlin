@@ -13,21 +13,25 @@ internal class SigningDataDecoderTest() {
         private val dataDecoder = Bolt11DataDecoder()
 
         @JvmStatic
-        fun bolt1Addresses() = validTestData.map { data ->
-            Arguments.of(
-                SigningDataDecoder.SigningDataDecoderRequest(
-                    tagData = dataDecoder.tagData(data.dataString),
-                    timestampData = dataDecoder.timestampData(data.dataString),
-                    humanReadablePartRaw = data.humanReadablePart.raw,
-                ),
-                data.decodeResult.data.signingData
-            )
-        }
+        fun bolt1Addresses() =
+            validTestData.map { data ->
+                Arguments.of(
+                    SigningDataDecoder.SigningDataDecoderRequest(
+                        tagData = dataDecoder.tagData(data.dataString),
+                        timestampData = dataDecoder.timestampData(data.dataString),
+                        humanReadablePartRaw = data.humanReadablePart.raw,
+                    ),
+                    data.decodeResult.data.signingData,
+                )
+            }
     }
 
     @ParameterizedTest
     @MethodSource("bolt1Addresses")
-    fun testSigningDataDecoder(input: SigningDataDecoder.SigningDataDecoderRequest, expected: String) {
+    fun testSigningDataDecoder(
+        input: SigningDataDecoder.SigningDataDecoderRequest,
+        expected: String,
+    ) {
         val result = decoder.decode(input)
         assertEquals(expected, result)
     }

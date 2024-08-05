@@ -3,7 +3,6 @@ package com.josemiguelmelo.lnd.bolt11.decoder
 import com.josemiguelmelo.lnd.bolt11.data.Bolt11TestData.invalidChecksumInvoice
 import com.josemiguelmelo.lnd.bolt11.data.Bolt11TestData.validTestData
 import com.josemiguelmelo.lnd.bolt11.model.Bolt11
-import com.josemiguelmelo.lnd.bolt11.model.Bolt11Data
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -16,17 +15,21 @@ internal class Bolt11DecoderTest() {
 
     companion object {
         @JvmStatic
-        fun bolt1Addresses() = validTestData.map { data ->
-            Arguments.of(
-                data.rawInvoice,
-                data.decodeResult
-            )
-        }
+        fun bolt1Addresses() =
+            validTestData.map { data ->
+                Arguments.of(
+                    data.rawInvoice,
+                    data.decodeResult,
+                )
+            }
     }
 
     @ParameterizedTest
     @MethodSource("bolt1Addresses")
-    fun testDecoder(input: String, expected: Bolt11) {
+    fun testDecoder(
+        input: String,
+        expected: Bolt11,
+    ) {
         val result = decoder.decode(input)
         assertEquals(expected, result)
     }

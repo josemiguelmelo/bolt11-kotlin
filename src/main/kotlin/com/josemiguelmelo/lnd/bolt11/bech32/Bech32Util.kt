@@ -1,6 +1,6 @@
 package com.josemiguelmelo.lnd.bolt11.bech32
 
-import com.josemiguelmelo.lnd.bolt11.helper.ByteArrayUtil.convertInt5ArrayToByteArray
+import com.josemiguelmelo.lnd.bolt11.util.ByteArrayUtil.convertInt5ArrayToByteArray
 import java.net.URLDecoder
 
 object Bech32Util {
