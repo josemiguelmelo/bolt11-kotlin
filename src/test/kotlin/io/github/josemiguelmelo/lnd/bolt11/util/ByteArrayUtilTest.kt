@@ -1,9 +1,9 @@
 package io.github.josemiguelmelo.lnd.bolt11.util
 
-import com.josemiguelmelo.lnd.bolt11.util.ByteArrayUtil.convertInt5ArrayToByteArray
-import com.josemiguelmelo.lnd.bolt11.util.ByteArrayUtil.textToHexString
-import com.josemiguelmelo.lnd.bolt11.util.ByteArrayUtil.toHexString
-import com.josemiguelmelo.lnd.bolt11.util.ByteArrayUtil.toInt
+import io.github.josemiguelmelo.lnd.bolt11.util.ByteArrayUtil.convertInt5ArrayToByteArray
+import io.github.josemiguelmelo.lnd.bolt11.util.ByteArrayUtil.textToHexString
+import io.github.josemiguelmelo.lnd.bolt11.util.ByteArrayUtil.toHexString
+import io.github.josemiguelmelo.lnd.bolt11.util.ByteArrayUtil.toInt
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
