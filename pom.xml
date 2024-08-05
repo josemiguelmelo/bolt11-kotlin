@@ -5,11 +5,18 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>bolt11-util</artifactId>
-    <groupId>com.josemiguelmelo.lnd</groupId>
+    <groupId>io.github.josemiguelmelo.lnd</groupId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>bolt11-util</name>
+
+    <developers>
+        <developer>
+            <name>José Miguel Melo</name>
+            <email>josemiguelmelo94@gmail.com</email>
+        </developer>
+    </developers>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
