@@ -1,11 +1,11 @@
 package io.github.josemiguelmelo.lnd.bolt11.data
 
-import com.josemiguelmelo.lnd.bolt11.model.Bolt11
-import com.josemiguelmelo.lnd.bolt11.model.Bolt11Data
-import com.josemiguelmelo.lnd.bolt11.model.HumanReadablePart
-import com.josemiguelmelo.lnd.bolt11.model.Signature
-import com.josemiguelmelo.lnd.bolt11.model.tag.Tag
-import com.josemiguelmelo.lnd.bolt11.model.tag.TagType
+import io.github.josemiguelmelo.lnd.bolt11.model.Bolt11
+import io.github.josemiguelmelo.lnd.bolt11.model.Bolt11Data
+import io.github.josemiguelmelo.lnd.bolt11.model.HumanReadablePart
+import io.github.josemiguelmelo.lnd.bolt11.model.Signature
+import io.github.josemiguelmelo.lnd.bolt11.model.tag.Tag
+import io.github.josemiguelmelo.lnd.bolt11.model.tag.TagType
 
 internal object Bolt11TestData {
     data class Bolt11TestData(

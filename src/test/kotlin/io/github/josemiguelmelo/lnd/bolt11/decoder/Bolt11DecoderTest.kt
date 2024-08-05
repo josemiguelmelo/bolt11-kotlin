@@ -1,8 +1,8 @@
 package io.github.josemiguelmelo.lnd.bolt11.decoder
 
-import com.josemiguelmelo.lnd.bolt11.data.Bolt11TestData.invalidChecksumInvoice
-import com.josemiguelmelo.lnd.bolt11.data.Bolt11TestData.validTestData
-import com.josemiguelmelo.lnd.bolt11.model.Bolt11
+import io.github.josemiguelmelo.lnd.bolt11.data.Bolt11TestData.invalidChecksumInvoice
+import io.github.josemiguelmelo.lnd.bolt11.data.Bolt11TestData.validTestData
+import io.github.josemiguelmelo.lnd.bolt11.model.Bolt11
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows

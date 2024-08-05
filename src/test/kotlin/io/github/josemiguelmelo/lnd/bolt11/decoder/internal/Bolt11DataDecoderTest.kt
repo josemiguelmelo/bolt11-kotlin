@@ -1,7 +1,7 @@
 package io.github.josemiguelmelo.lnd.bolt11.decoder.internal
 
-import com.josemiguelmelo.lnd.bolt11.data.Bolt11TestData.validTestData
-import com.josemiguelmelo.lnd.bolt11.model.Bolt11Data
+import io.github.josemiguelmelo.lnd.bolt11.data.Bolt11TestData.validTestData
+import io.github.josemiguelmelo.lnd.bolt11.model.Bolt11Data
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
