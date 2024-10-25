@@ -4,7 +4,7 @@
 
     <artifactId>bolt11-util</artifactId>
     <groupId>io.github.josemiguelmelo.lnd</groupId>
-    <version>0.0.2</version>
+    <version>0.0.3-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>bolt11-util</name>
 
@@ -12,10 +12,9 @@
     <description>Library for decoding LND Bolt #11 invoices</description>
 
     <scm>
-        <connection>scm:git:git@github.com:josemiguelmelo/bolt11-kotlin.git</connection>
-        <developerConnection>scm:git:ssh://github.com:josemiguelmelo/bolt11-kotlin.git</developerConnection>
-        <url>https://github.com/josemiguelmelo/bolt11-kotlin/tree/main</url>
-      <tag>bolt11-util-0.0.2</tag>
+        <developerConnection>scm:git:https://github.com/josemiguelmelo/bolt11-kotlin.git</developerConnection>
+        <url>https://github.com/josemiguelmelo/bolt11-kotlin.git</url>
+      <tag>HEAD</tag>
   </scm>
 
     <developers>
@@ -33,6 +32,7 @@
     </licenses>
 
     <properties>
+        <project.scm.id>github</project.scm.id>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <kotlin.code.style>official</kotlin.code.style>
         <kotlin.compiler.jvmTarget>1.8</kotlin.compiler.jvmTarget>
@@ -90,6 +90,14 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>3.1.1</version>
+                <configuration>
+                    <tagNameFormat>@{project.version}</tagNameFormat>
+                </configuration>
             </plugin>
         </plugins>
     </build>
