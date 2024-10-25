@@ -3,7 +3,7 @@ name: Maven Package
 on:
   push:
     branches:
-      - 'main'
+      - 'github-actions'
 
 jobs:
   build:
@@ -29,7 +29,7 @@ jobs:
       run: |
         git config user.email "actions@github.com"
         git config user.name "GitHub Actions"
-        git checkout main
+        git config --global url.git@github.com:.insteadOf username@github.com:
     - name: Publish to GitHub Packages Apache Maven
       run: mvn release:prepare release:perform --batch-mode -s $GITHUB_WORKSPACE/settings.xml
       env:
