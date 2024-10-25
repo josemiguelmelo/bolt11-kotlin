@@ -1,9 +1,11 @@
-name: Maven Package
+name: Maven Publish
 
 on:
-  push:
-    branches:
-      - 'main'
+  workflow_run:
+    workflows: ["Maven Build"]
+    branches: [main]
+    types:
+      - completed
 
 jobs:
   build:
