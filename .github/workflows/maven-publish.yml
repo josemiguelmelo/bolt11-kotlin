@@ -9,6 +9,7 @@ on:
 
 jobs:
   build:
+    if: contains(github.event.head_commit.message, 'release:')
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -30,7 +31,6 @@ jobs:
         git config user.name "GitHub Actions"
         cat $GITHUB_WORKSPACE/settings.xml
     - name: Publish to GitHub Packages Apache Maven
-      if: contains(github.event.head_commit.message, 'release:')
       run: |
         mvn -B package --file pom.xml
         mvn release:prepare release:perform --batch-mode -s $GITHUB_WORKSPACE/settings.xml
