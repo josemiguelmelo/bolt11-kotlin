@@ -1,9 +1,6 @@
 name: Maven Build
 
-on:
-  push:
-    branches:
-      - 'main'
+on: [main]
 
 jobs:
   build:
