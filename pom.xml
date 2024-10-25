@@ -11,12 +11,12 @@
     <url>https://github.com/josemiguelmelo/bolt11-kotlin/tree/main</url>
     <description>Library for decoding LND Bolt #11 invoices</description>
 
-    <scm>
-        <connection>scm:git:git@github.com:josemiguelmelo/bolt11-kotlin.git</connection>
-        <developerConnection>scm:git:ssh://github.com:josemiguelmelo/bolt11-kotlin.git</developerConnection>
-        <url>https://github.com/josemiguelmelo/bolt11-kotlin/tree/main</url>
-      <tag>bolt11-util-0.0.2</tag>
-  </scm>
+<!--    <scm>-->
+<!--        <connection>scm:git:git@github.com:josemiguelmelo/bolt11-kotlin.git</connection>-->
+<!--        <developerConnection>scm:git:ssh://github.com:josemiguelmelo/bolt11-kotlin.git</developerConnection>-->
+<!--        <url>https://github.com/josemiguelmelo/bolt11-kotlin/tree/main</url>-->
+<!--        <tag>bolt11-util-0.0.2</tag>-->
+<!--  </scm>-->
 
     <developers>
         <developer>
